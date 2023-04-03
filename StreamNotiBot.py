@@ -52,6 +52,10 @@ async def main(streamer: str, session) :
             now_status = await is_live(streamer, session)
             if status != now_status :
                 status = now_status
+                # 아래는 뱅온 알림만 받고싶을 때
+                # if status :
+                #     await send_hook(names[streamer], status, session)
+                # 기본은 뱅온/뱅종 알림
                 await send_hook(names[streamer], status, session)
         except Exception as e:
             print(f"ERROR : {e}, Session : {streamer}")
